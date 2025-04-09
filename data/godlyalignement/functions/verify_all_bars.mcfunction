@@ -1,8 +1,6 @@
-# Soleil vs Lune
-execute run function godlyalignement:soleil_lune/verify
+# verify_all_bars.mcfunction optimisé
 
-# Vie vs Mort
-execute run function godlyalignement:vie_mort/verify
-
-# Ordre vs Chaos
-execute run function godlyalignement:ordre_chaos/verify
+# Ne vérifier qu'une fois par joueur (ou utiliser le tag debug)
+execute as @r run function godlyalignement:soleil_lune/verify
+execute as @r run function godlyalignement:vie_mort/verify
+execute as @r run function godlyalignement:ordre_chaos/verify

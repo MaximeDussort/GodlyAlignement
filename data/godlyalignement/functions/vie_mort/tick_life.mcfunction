@@ -1,13 +1,7 @@
-# Créer des marqueurs de spawn autour des joueurs
-execute as @a at @s run summon area_effect_cloud ~10 ~ ~10 {Duration:1,Tags:["passive_spawn"]}
-execute as @a at @s run summon area_effect_cloud ~-10 ~ ~10 {Duration:1,Tags:["passive_spawn"]}
-execute as @a at @s run summon area_effect_cloud ~10 ~ ~-10 {Duration:1,Tags:["passive_spawn"]}
-execute as @a at @s run summon area_effect_cloud ~-10 ~ ~-10 {Duration:1,Tags:["passive_spawn"]}
-execute as @a at @s run summon area_effect_cloud ~15 ~ ~ {Duration:1,Tags:["passive_spawn"]}
+# Sélectionner un joueur aléatoire plutôt que tous les joueurs
+tag @r add spawn_animals
+execute at @a[tag=spawn_animals,limit=1] run function godlyalignement:vie_mort/do_passive_spawn_points
+tag @a remove spawn_animals
 
-# Pour chaque marqueur, essayer de faire apparaître un animal aléatoire
-execute at @e[type=area_effect_cloud,tag=passive_spawn,limit=5,sort=random] run function godlyalignement:vie_mort/spawn_random_passive
+# Jouer le son une seule fois pour tous
 playsound minecraft:item.brush.brushing.generic master @a ~ ~ ~ 1 1 1
-
-# Nettoyage
-kill @e[type=area_effect_cloud,tag=passive_spawn]

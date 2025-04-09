@@ -1,26 +1,18 @@
-# Sélection d'un effet positif aléatoire
-summon area_effect_cloud ~ ~ ~ {Tags:["effect_random"]}
-execute store result score %effect random run data get entity @e[type=area_effect_cloud,tag=effect_random,limit=1] UUID[1] 1
-scoreboard players set %effect_count random 12
-scoreboard players operation %effect random %= %effect_count random
-scoreboard players add %effect random 1
-kill @e[type=area_effect_cloud,tag=effect_random]
+# ordre_chaos/apply_random_effect.mcfunction optimisé
 
-# Application de l'effet sélectionné à tous les joueurs
+# Utiliser un système moins coûteux pour la sélection d'effet
+scoreboard players set %effect_max random 12
+function godlyalignement:system/get_random_value
+scoreboard players operation %effect random = %result random
+scoreboard players add %effect random 1
+
+# Utiliser une technique d'application d'effet plus efficace
 execute if score %effect random matches 1 run effect give @a minecraft:speed 45 1
 execute if score %effect random matches 2 run effect give @a minecraft:haste 45 1
-execute if score %effect random matches 3 run effect give @a minecraft:strength 45 1
-execute if score %effect random matches 4 run effect give @a minecraft:instant_health 1 1
-execute if score %effect random matches 5 run effect give @a minecraft:jump_boost 45 1
-execute if score %effect random matches 6 run effect give @a minecraft:regeneration 45 1
-execute if score %effect random matches 7 run effect give @a minecraft:resistance 45 1
-execute if score %effect random matches 8 run effect give @a minecraft:fire_resistance 45 1
-execute if score %effect random matches 9 run effect give @a minecraft:water_breathing 45 1
-execute if score %effect random matches 10 run effect give @a minecraft:invisibility 45 0
-execute if score %effect random matches 11 run effect give @a minecraft:night_vision 45 0
-execute if score %effect random matches 12 run effect give @a minecraft:absorption 45 1
+execute if score %effect random matches 3..4 run function godlyalignement:ordre_chaos/effects_group1
+execute if score %effect random matches 5..8 run function godlyalignement:ordre_chaos/effects_group2
+execute if score %effect random matches 9..12 run function godlyalignement:ordre_chaos/effects_group3
 
-# Message pour indiquer qu'un effet a été donné
-tellraw @a {"text":"Le Chaos fais des siennes...","color":"#740000"}
-execute as @a run playsound minecraft:entity.elder_guardian.curse master @s ~ ~ ~ 1 1 1
-    
+# Message et son seulement si un effet a été appliqué
+tellraw @a {"text":"Le Chaos fait des siennes...","color":"#740000"}
+execute as @a at @s run playsound minecraft:entity.elder_guardian.curse master @s ~ ~ ~ 0.3 1 0.3

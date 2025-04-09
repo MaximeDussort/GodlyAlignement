@@ -1,0 +1,2 @@
+# Action à effectuer lorsque Ordre_Chaos est en dessous de -75
+tellraw @a {"text":"L'Ordre dans le monde est maintenu.","color":"#fffb00", "hoverEvent":{"action":"show_text","value":"Tous les joueurs sont immunisés aux effets négatifs."}}

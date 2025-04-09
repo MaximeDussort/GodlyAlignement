@@ -1,0 +1,6 @@
+{
+  "condition": "minecraft:light_level",
+  "value": {
+    "max": 7
+  }
+}

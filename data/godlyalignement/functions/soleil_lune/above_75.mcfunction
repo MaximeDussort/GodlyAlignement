@@ -1,0 +1,2 @@
+# Action à effectuer lorsque Soleil_Lune est au-dessus de 75
+tellraw @s {"text":"L'influence de la Lune se ressent par delas les marées...","color":"#b8dfff", "hoverEvent":{"action":"show_text","value":"Les journées se font plus courtes"}}

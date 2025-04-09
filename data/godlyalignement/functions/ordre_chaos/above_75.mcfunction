@@ -1,0 +1,2 @@
+# Action à effectuer lorsque Ordre_Chaos est au-dessus de 75
+tellraw @s {"text":"Le Chaos règne dans le monde !","color":"dark_gray", "hoverEvent":{"action":"show_text","value":"Des effets positifs peuvent-être appliqués aux joueurs de façon aléatoires"}}

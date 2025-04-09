@@ -1,0 +1,17 @@
+{
+  "condition": "minecraft:alternative",
+  "terms": [
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:grass_block"
+    },
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:dirt"
+    },
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:podzol"
+    }
+  ]
+}
